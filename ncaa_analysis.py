@@ -35,9 +35,6 @@ def download_flashresults(season: str, final_year: int = FINAL_YEAR, export: boo
         if season not in SEASONS:
             raise ValueError('Please choose a valid competition season.')
 
-        if (year == 2024) & (season == 'Outdoor'):
-            continue 
-
         root: str = f'https://flashresults.ncaa.com/{season}/{year}/scores_by_event.htm'    
         df_f = pd.read_html(root)[0]
         df_m = pd.read_html(root)[1]
@@ -343,7 +340,7 @@ def visualize_top_10_over_time(df: pd.DataFrame, title: str | None = None) -> No
                            markers=True,
                            data=ts_df, 
                            palette=list(color_vals))
-    ts_plot.set_xticks(range(ts_df['year'].min(), 2024, 1))
+    ts_plot.set_xticks(range(ts_df['year'].min(), 2025, 1))
     ts_plot.set_title(title, 
                     fontsize=20, 
                     y=1.05,
